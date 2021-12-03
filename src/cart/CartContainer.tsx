@@ -15,15 +15,21 @@ export default function LefMenuContainer() {
     const navigatge = useNavigate();
 
     useEffect(() => {
-        if (isLoading) {
-            dispatch(fetchCart());
-            setLoading(false);
+        if (!isLoading){
+            return;
         }
+
+        dispatch(fetchCart());
+        setLoading(false);
 
     }, [isLoading, dispatch])
 
 
-    const onItemRemove = ({ id }) => dispatch((deleteCartItem as RootStateOrAny)(id));
+    const onItemRemove = ({ id }) => {
+        setLoading(true);
+        dispatch((deleteCartItem as RootStateOrAny)(id));
+    };
+
     const onOrderSubmit = () => {
         dispatch(submitOrder());
         navigatge(routeConfig.orderSuccess.path);

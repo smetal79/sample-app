@@ -68,7 +68,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 const mdTheme = createTheme();
 
-function DashboardContent() {
+export default function App() {
 
   return (
     <ThemeProvider theme={mdTheme}>
@@ -112,7 +112,7 @@ function DashboardContent() {
           >
           </Toolbar>
           <Divider />
-          <LeftMenuBarContainer/>
+          <LeftMenuBarContainer />
         </Drawer>
         <Box
           component="main"
@@ -129,16 +129,12 @@ function DashboardContent() {
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
-             <AppRoutes/>
+              <AppRoutes />
             </Grid>
           </Container>
         </Box>
       </Box>
-      <Outlet/>
+      <Outlet />
     </ThemeProvider>
   );
-}
-
-export default function Dashboard() {
-  return <DashboardContent />;
 }

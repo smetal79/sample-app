@@ -17,7 +17,7 @@ const initialState: InitialState = {
     loading: 'idle'
   }
 
-export const productListSlice = createSlice({
+export const { reducer } = createSlice({
     name: 'cart',
     initialState,
     reducers: {
@@ -30,4 +30,4 @@ export const productListSlice = createSlice({
   })
 
   
-export default productListSlice.reducer
+export default reducer

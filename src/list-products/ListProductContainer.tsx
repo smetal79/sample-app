@@ -13,9 +13,11 @@ export default function ListProductContainer() {
 
     useEffect(() => {
 
-        if (products.length === 0) {
-            dispatch(fetchProducts())
+        if (products.length !== 0) {
+            return;
         }
+
+        dispatch(fetchProducts());
     }, [products, dispatch])
 
     const selectedItems = currentItems
