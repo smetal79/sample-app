@@ -53,11 +53,7 @@ const CartWithoutItemNotification = () => {
     )
 }
 
-export default function Cart({
-    cart,
-    onItemRemove = () => { },
-    onOrderSubmit = () => { } }) {
-        
+export default function Cart({ cart, onItemRemove, onOrderSubmit }) {
     const { items } = cart;
     const { total, shipping, totalIncludingShipping } = cart;
     const columns = getColumns(onItemRemove);
@@ -75,4 +71,4 @@ export default function Cart({
             />
             <Footer totals={{ total, shipping, totalIncludingShipping }} onSubmit={onOrderSubmit} />
         </Container>
-};
+}
