@@ -13,8 +13,9 @@ export default function ListProducts({ products, onAdd, selectedItems }) {
                         {
                             products
                                 .map((product, i) => {
-                                    const count = selectedItems[product.id] ? selectedItems[product.id].count : 0
-                                    return <Product key={`${i}-{product.id}`} selectedCount={count} product={product} onAdd={onAdd} />
+                                    const { id: productId } = product;
+                                    const  { count = 0 } = selectedItems[productId] || {};
+                                    return <Product key={`${i}-{productId}`} selectedCount={count} product={product} onAdd={onAdd} />
                                 })
                         }
                     </Paper>
