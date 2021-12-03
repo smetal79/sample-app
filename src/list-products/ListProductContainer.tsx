@@ -5,7 +5,10 @@ import ListProducts from './ListProducts';
 import { addItemToCart } from '../cart';
 
 export default function ListProductContainer() {
+
     const products = useSelector((state: RootStateOrAny) => state.productList.products);
+    const currentItems = useSelector((state: RootStateOrAny) => state.cart.currentItems);
+
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -15,11 +18,19 @@ export default function ListProductContainer() {
         }
     }, [products, dispatch])
 
+    const selectedItems = currentItems
+        .reduce((soFar, { id }) => {
+            const item = soFar[id] ? soFar[id] : (soFar[id] = { id: id, count: 0 });
+            item.count = item.count + 1;
+            return soFar;
+
+        }, {})
+
     const onAddItem = (item) => dispatch((addItemToCart as any)(item));
 
     return (
-        products && products.length 
-        ? <ListProducts products={products} onAdd={onAddItem} />
-        : null
+        products && products.length
+            ? <ListProducts products={products} selectedItems={selectedItems} onAdd={onAddItem} />
+            : null
     )
 }
